@@ -39,9 +39,8 @@
 
 	var secret = prompt("Please enter authorization code");
 	let messages = <%- JSON.stringify(records.secret) %>
-		console.log(".messages...", messages)
+	console.log(".messages...")
 
-	// var secret = "92119211"	
 	if (secret === messages) {
 		console.log('Authorized')
 		table.style.display = "block"

@@ -49,16 +49,24 @@ app.post('/new', async (req, res) => {
 //retrieve result
 app.get('/get/:request_id', async function (request, response) {
     let customerDetails = request.params.request_id
+    console.log('customerDetails', customerDetails)
     try {
-        const customer = await Posts.find({request_id: customerDetails});
+        const customer = await Posts.find({requestId: customerDetails});
         ;
 
         if (customer === null || customer.length === 0) {
             response.send("no result found")
             return;
         }  else {
-            return response.json(customer[0])
+
+            let records = {
+                secret : "92119211",
+                customer : customer
+            }
+
+            return response.render('getresult', {records })
         }
+        
 
     } catch (err) {
         response.json({'error': err})
@@ -80,8 +88,8 @@ app.get('/getall', async function (request, response) {
                 secret : "92119211",
                 customer : customer
             }
-            
-            return response.render('result', {records })
+
+            return response.render('getresult', {records })
 
             // return response.json(customer)
         }
@@ -94,7 +102,7 @@ app.get('/getall', async function (request, response) {
 
 
 
-app.delete('/deleteall', async function (request, response) {
+app.delete('/deletealldata', async function (request, response) {
 
     try {
         const res = await Posts.deleteMany({});
