@@ -1,26 +1,75 @@
+<p id="text"></p>
+<table class="table table-striped table-primary" style="display: none;" id="table">
+	<thead>
+		<tr>
+			<th>location</th>
+			<th>Staff</th>
+			<th>Services</th>
+			<th>Extra Services</th>
+			<th>Date & TIme</th>
+			<th>Information</th>
+			<th>Requestid</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%if (records.customer.length >0){ %>
+		<% records.customer.forEach(function(row){ %>
+		<tr>
+			<td><%= row.location %></td>
+			<td><%= row.staff %></td>
+			<td><%= row.services %></td>
+			<td><%= row.extraService %></td>
+			<td><%= row.dateAndTime %></td>
+			<td><%= row.information %></td>
+			<td><%= row.requestId %></td>
+		</tr>
+		<% })}else{ %>
+		<tr>
+			<td colspan="8">No Record Found</td>
 
+		</tr>
+		<% } %>
+	</tbody>
+</table>
 
-<body>
-	<h1> <%= "Please Enter Password "  %></h1>
-	<p id = "result">ohh </p>
-
-</body>
 <script>
 
-let messages = <%-JSON.stringify(data)%>	
 
 
-console.log(".messages...",messages )
-console.log("..secret..",messages.secret )
-console.log(".customer...",messages.customer )
-var secret = prompt("Please enter authorization code");
-if (secret === messages.secret) {
-		result.innerHTML = JSON.stringify(messages.customer)
-	}else{
+
+	var secret = prompt("Please enter authorization code");
+	let messages = <%- JSON.stringify(records.secret) %>
+		console.log(".messages...", messages)
+
+	// var secret = "92119211"	
+	if (secret === messages) {
+		console.log('Authorized')
+		table.style.display = "block"
+	} else {
 		console.log("You are not authorized ")
-		alert
-		("You are not authorized ")
+		alert("You are not authorized ")
+		text.innerHTML = "<h1> You are not authorized </h1>"
 	}
 
 
 </script>
+
+<style>
+	table tr:nth-child(even) {
+		background-color: #eee;
+	}
+
+	table tr:nth-child(odd) {
+		background-color: #fff;
+	}
+
+	table th {
+		background-color: rgb(104, 91, 91);
+		color: white;
+	}
+
+	table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>

@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const path = require('path');
 const ejs  = require('ejs')
-const jsonToTable = require('json-to-table');
 
 const app = express()
 
@@ -71,21 +70,18 @@ app.get('/getall', async function (request, response) {
 
 
     try {
-        const customer = await Posts.find({});
+        const customer = await Posts.find({}).sort({_id:-1}) 
         if (customer === null || customer.length === 0) {
             return response.send("no result found")
             
         }  else {
-            const tabled = jsonToTable(customer);
-            console.log('tabled', tabled)
-
-
-            let data = {
+            
+            let records = {
                 secret : "92119211",
-                customer
+                customer : customer
             }
-            customer.secret = "92119211"
-            return response.render('result', {data })
+            
+            return response.render('result', {records })
 
             // return response.json(customer)
         }
