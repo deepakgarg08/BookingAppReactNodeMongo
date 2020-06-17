@@ -1,0 +1,26 @@
+
+
+<body>
+	<h1> <%= "Please Enter Password "  %></h1>
+	<p id = "result">ohh </p>
+
+</body>
+<script>
+
+let messages = <%-JSON.stringify(data)%>	
+
+
+console.log(".messages...",messages )
+console.log("..secret..",messages.secret )
+console.log(".customer...",messages.customer )
+var secret = prompt("Please enter authorization code");
+if (secret === messages.secret) {
+		result.innerHTML = JSON.stringify(messages.customer)
+	}else{
+		console.log("You are not authorized ")
+		alert
+		("You are not authorized ")
+	}
+
+
+</script>
