@@ -14,7 +14,7 @@ let dbschema = new schema(
                 "type": "String"
             },
             "price": {
-                "type": "Date"
+                "type": "String"
             }
         },
         "extraService": {
@@ -22,12 +22,12 @@ let dbschema = new schema(
                 "type": "String"
             },
             "price": {
-                "type": "Date"
+                "type": "String"
             }
         },
         "dateAndTime": {
             "date": {
-                "type": "Date"
+                "type": "String"
             },
             "time": {
                 "type": "String"
@@ -41,7 +41,9 @@ let dbschema = new schema(
                 "type": "String"
             },
             "additionalInfo": {
-                "type": "Mixed"
+                "type": "Mixed",
+                 required: false
+
             },
             "mobile": {
                 "type": "String"
@@ -51,10 +53,11 @@ let dbschema = new schema(
             "type": "String"
         },
         "bookingConfirmed": {
-            "type": "String"
+            "type": "String",
+            required: false
         },
-        "request_id": {
-            "type": "String"
+        "requestId": {
+            "type": Number
             // ,  "unique" : true
         }
     }

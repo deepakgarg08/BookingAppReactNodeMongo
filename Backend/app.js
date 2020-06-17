@@ -26,10 +26,14 @@ app.get('/', (req, res) => {
 
 app.post('/new', async (req, res) => {
     let customerDetails = req.body.customerData
+    console.log('customerDetails', customerDetails)
     let user = new Posts(customerDetails)
     await user.save().then(data => {
+        console.log('data response', data)
+        
         return res.send(data)
     }).catch(err => {
+        console.log("check err",err)
         return res.json(err)
     })
 })
