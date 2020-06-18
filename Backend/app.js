@@ -26,18 +26,25 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, (err) =
 })
 mongoose.set('useCreateIndex', true);
 
+app.use(express.static(path.join(__dirname, 'build')));
+
 app.get('/', (req, res) => {
-    res.send('Welcome to Booking app ')
-})
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+  
+
+// app.get('/', (req, res) => {
+//     res.send('Welcome to Booking app ')
+// })
 
 app.post('/new', async (req, res) => {
 
     
     let customerDetails = req.body.customerData
-    console.log('customerDetails', customerDetails)
+    // console.log('customerDetails', customerDetails)
     let user = new Posts(customerDetails)
     await user.save().then(data => {
-        console.log('data response', data)
+        // console.log('data response', data)
         
         return res.send(data)
     }).catch(err => {
@@ -49,7 +56,7 @@ app.post('/new', async (req, res) => {
 //retrieve result
 app.get('/get/:request_id', async function (request, response) {
     let customerDetails = request.params.request_id
-    console.log('customerDetails', customerDetails)
+    // console.log('customerDetails', customerDetails)
     try {
         const customer = await Posts.find({requestId: customerDetails});
         ;
@@ -60,10 +67,11 @@ app.get('/get/:request_id', async function (request, response) {
         }  else {
 
             let records = {
+                
                 secret : "92119211",
                 customer : customer
             }
-
+            console.log('records', records)
             return response.render('getresult', {records })
         }
         

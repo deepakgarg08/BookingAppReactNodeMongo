@@ -9,6 +9,7 @@
 			<th>Date & TIme</th>
 			<th>Information</th>
 			<th>Requestid</th>
+			<th>Total Amount</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,6 +23,7 @@
 			<td><%= row.dateAndTime %></td>
 			<td><%= row.information %></td>
 			<td><%= row.requestId %></td>
+			<td><%= row.totalamount %></td>
 		</tr>
 		<% })}else{ %>
 		<tr>
@@ -55,20 +57,20 @@
 
 <style>
 	table tr:nth-child(even) {
-		background-color: #eee;
+		background-color: rgb(255, 255, 255);
 	}
 
 	table tr:nth-child(odd) {
-		background-color: #fff;
+		background-color: rgb(255, 232, 232);
 	}
 
 	table th {
-		background-color: rgb(104, 91, 91);
+		background-color: rgb(5, 3, 3);
 		color: white;
 	}
 
 	table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
+  border: 3px solid black;
+  border-collapse: collapse;		
 }
 </style>
