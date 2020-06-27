@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const path = require('path');
 const ejs  = require('ejs')
+const dotenv = require('dotenv');
 
 const app = express()
 
@@ -14,12 +15,12 @@ app.use(express.urlencoded({extended: true}))
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
-
+dotenv.config();
 const Posts = require('./model/mongoscheme')
 
 const port = process.env.PORT || 4000
-const uri = "mongodb+srv://deepakgarg08:92119211@cluster0-zr3gu.mongodb.net/customerDataBookingApp?retryWrites=true";
-
+const uri = process.env.MONGO_DB
+// const uri = "mongodb+srv://deepakgarg08:92119211@cluster0-zr3gu.mongodb.net/customerDataBookingApp?retryWrites=true";
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, (err) => {
     if (err) console.log('err')
     else console.log("connection successful")
@@ -71,7 +72,7 @@ app.get('/get/:request_id', async function (request, response) {
                 secret : "92119211",
                 customer : customer
             }
-            console.log('records', records)
+            // console.log('records', records)
             return response.render('getresult', {records })
         }
         

@@ -58,7 +58,7 @@ let dbschema = new schema(
         },
         "requestId": {
             "type": Number
-            // ,  "unique" : true
+            ,  "unique" : true
         },
         "totalamount" : {
             "type" : Number
