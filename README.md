@@ -10,4 +10,4 @@ Go to Frontend Repository
  `npm install` 
  `npm start`
 
-Note: I know I pushed .env file, which should not be here... Just to simplification.
+Note: I know I pushed .env file, which should not be here... Just for simplification.
